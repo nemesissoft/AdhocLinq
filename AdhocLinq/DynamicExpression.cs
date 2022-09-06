@@ -73,7 +73,6 @@ namespace AdhocLinq
         /// <param name="expression"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public Expression<Func<TEntity, TResult>> ParseLambda<TEntity, TResult>(string expression, params object[] values)
              => (Expression<Func<TEntity, TResult>>)ParseLambda(typeof(TEntity), typeof(TResult), expression, values);
     }
@@ -101,7 +100,7 @@ namespace AdhocLinq
         /// Create façade based on current factory settings
         /// </summary>
         /// <returns></returns>
-        public DynamicExpression Create() => new DynamicExpression(_customTypeResolver, _numberParserHandler);
+        public DynamicExpression Create() => new(_customTypeResolver, _numberParserHandler);
 
         /// <summary>
         /// Get cached version of default factory
