@@ -1,28 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+	<PropertyGroup>
+		<TargetFrameworks>net6.0</TargetFrameworks>
 
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+		<IsPackable>false</IsPackable>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+		<LangVersion>10.0</LangVersion>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
 
-  <ItemGroup>
-	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.8" />
-	<PackageReference Include="NUnit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.8" />
+		<PackageReference Include="NUnit" Version="3.13.3" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AdhocLinq\AdhocLinq.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AdhocLinq\AdhocLinq.csproj" />
+	</ItemGroup>
 
 </Project>

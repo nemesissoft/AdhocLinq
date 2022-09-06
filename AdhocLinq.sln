@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdhocLinq", "AdhocLinq\AdhocLinq.csproj", "{826D2DB7-3EA2-4E41-A1BD-99E31F7A3CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdhocLinq.Tests", "AdhocLinq.Tests\AdhocLinq.Tests.csproj", "{CA45A7FD-592C-4EC9-8511-EA83030E8CEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdhocLinq.Tests", "AdhocLinq.Tests\AdhocLinq.Tests.csproj", "{CA45A7FD-592C-4EC9-8511-EA83030E8CEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{FB22588B-68F1-4B1B-B2ED-6C09CFE54B32}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
