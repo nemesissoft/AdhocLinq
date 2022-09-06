@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+
 using AdhocLinq.Tests.Helpers.Entities;
+
 using Microsoft.EntityFrameworkCore;
+
 using NUnit.Framework;
 
 namespace AdhocLinq.Tests
@@ -160,14 +163,16 @@ namespace AdhocLinq.Tests
 
         #region GroupBy Tests
 
+        //TODO add support for grouping by multiple keys. EF Core does not support groupping by multiple keys the way it used to
+
         [Test]
         public void Entities_GroupBy_SingleKey()
         {
             //Arrange
-            var expected = _context.Posts.GroupBy(x => x.BlogId).ToArray();
+            var expected = _context.Posts.AsEnumerable<Post>().GroupBy(x => x.BlogId).ToArray();
 
             //Act
-            var actuals = _context.Posts.GroupBy(nameof(Blog.BlogId)).Cast<IGrouping<int, Post>>().ToArray();
+            var actuals = _context.Posts.ToList<Post>().AsQueryable().GroupBy(nameof(Blog.BlogId)).Cast<IGrouping<int, Post>>().ToArray();
 
             //Assert
             Assert.AreEqual(expected.Length, actuals.Length);
@@ -187,10 +192,10 @@ namespace AdhocLinq.Tests
         public void Entities_GroupBy_MultiKey()
         {
             //Arrange
-            var expected = _context.Posts.GroupBy(x => new { x.BlogId, x.PostDate }).ToArray();
+            var expected = _context.Posts.AsEnumerable<Post>().GroupBy(x => new { x.BlogId, x.PostDate }).ToArray();
 
             //Act
-            var actuals = _context.Posts.GroupBy("new (BlogId, PostDate)").ToDynamicArray();
+            var actuals = _context.Posts.ToList<Post>().AsQueryable().GroupBy("new (BlogId, PostDate)").ToDynamicArray();
 
             //Assert
             Assert.AreEqual(expected.Length, actuals.Length);
@@ -203,7 +208,7 @@ namespace AdhocLinq.Tests
 
                 Assert.AreEqual(expectedRow.Key.BlogId, ((dynamic)actual.Key).BlogId);
                 Assert.AreEqual(expectedRow.Key.PostDate, ((dynamic)actual.Key).PostDate);
-                
+
                 Assert.That(actual.ToArray(), Is.EquivalentTo(expectedRow.ToArray()).Using(Post.PostComparer));
             }
         }
@@ -212,10 +217,10 @@ namespace AdhocLinq.Tests
         public void Entities_GroupBy_SingleKey_SingleResult()
         {
             //Arrange
-            IGrouping<DateTime, string>[] expected = _context.Posts.GroupBy(x => x.PostDate, x => x.Title).ToArray();
+            IGrouping<DateTime, string>[] expected = _context.Posts.AsEnumerable<Post>().GroupBy(x => x.PostDate, x => x.Title).ToArray();
 
             //Act
-            var actuals = _context.Posts.GroupBy("PostDate", "Title").Cast<IGrouping<DateTime, string>>().ToArray();
+            var actuals = _context.Posts.ToList<Post>().AsQueryable().GroupBy("PostDate", "Title").Cast<IGrouping<DateTime, string>>().ToArray();
 
             //Assert
             Assert.AreEqual(expected.Length, actuals.Length);
@@ -235,10 +240,10 @@ namespace AdhocLinq.Tests
         public void Entities_GroupBy_SingleKey_MultiResult()
         {
             //Arrange
-            var expected = _context.Posts.GroupBy(x => x.PostDate, x => new { x.Title, x.Content }).ToArray();
+            var expected = _context.Posts.AsEnumerable<Post>().GroupBy(x => x.PostDate, x => new { x.Title, x.Content }).ToArray();
 
             //Act
-            var actuals = _context.Posts.GroupBy("PostDate", "new (Title, Content)").ToDynamicArray();
+            var actuals = _context.Posts.ToList<Post>().AsQueryable().GroupBy("PostDate", "new (Title, Content)").ToDynamicArray();
 
             //Assert
             Assert.AreEqual(expected.Length, actuals.Length);
