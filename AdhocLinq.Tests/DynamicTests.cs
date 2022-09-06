@@ -225,7 +225,7 @@ namespace AdhocLinq.Tests
 
             CollectionAssert.AreEqual(testList.Select(x => x.UserName).ToArray(), userNames.ToDynamicArray());
             CollectionAssert.AreEqual(
-                testList.Select(x => $"{{\r\n\tUserName = {x.UserName}\r\n\tMyFirstName = {x.Profile.FirstName}\r\n}}").ToArray(),
+                testList.Select(x => $"{{{Environment.NewLine}\tUserName = {x.UserName}{Environment.NewLine}\tMyFirstName = {x.Profile.FirstName}{Environment.NewLine}}}").ToArray(),
                 userFirstName.AsEnumerable().Select(x => x.ToString()).ToArray()
                 );
             CollectionAssert.AreEqual(testList[0].Roles.Select(x => x.Id).ToArray(), Enumerable.ToArray(userRoles.First().RoleIds));
