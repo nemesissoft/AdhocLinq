@@ -24,7 +24,7 @@ var query =
 
 Note that expressions in the query are strings that could have been dynamically constructed at run-time.
 
-## The ParseLambda Methods
+### The ParseLambda Methods
 
 The System.Linq.Dynamic.DynamicExpression class defines the following overloaded ParseLambda methods for dynamically parsing and creating lambda expressions.
 
@@ -75,8 +75,8 @@ Expression<Func<Customer, bool\>> e =
         "City = @0 and Orders.Count >= @1",  
         "London", 10);
 
-The Parse Method
-----------------
+### The Parse Method
+
 
 The System.Linq.Dynamic.DynamicExpression class defines the following method for parsing and creating expression tree fragments.
 
@@ -98,8 +98,7 @@ LambdaExpression e = Expression.Lambda(
 
 Note the use of a Dictionary<string, object> to provide a dictionary of named [substitution values](#_Substitution_Values) that can be referenced in the expression.
 
-Substitution Values
--------------------
+### Substitution Values
 
 Several methods in the Dynamic Expression API permit _substitution values_ to be specified through a parameter array. Substitution values are referenced in an expression using [identifiers](#_Identifiers) of the form @x, where x is an index into the parameter array. The last element of the parameter array may be an object that implements IDictionary<string, object>. If so, this dictionary is used to map identifiers to substitution values during parsing.
 
@@ -111,8 +110,7 @@ An identifier that references a substitution value is processed as follows:
 
 ·         Otherwise, the Expression.Constant method is used to create a constant expression from the value which is then substituted for the identifier.
 
-Dynamic Data Classes
---------------------
+### Dynamic Data Classes
 
 A data class is a class that contains only data members. The System.Linq.Dynamic.DynamicExpression class defines the following methods for dynamically creating data classes.
 
@@ -139,8 +137,7 @@ t.GetProperty("Name").SetValue(obj, "Albert", null);
 t.GetProperty("Birthday").SetValue(obj, new DateTime(1879, 3, 14), null);  
 Console.WriteLine(obj);
 
-IQueryable Extension Methods
-----------------------------
+### IQueryable Extension Methods
 
 The System.Linq.Dynamic.DynamicQueryable class implements the following extension methods for dynamically querying objects that implement the IQueryable<T> interface.
 
@@ -180,20 +177,17 @@ products.OrderBy("Category.CategoryName, UnitPrice descending");
 
 orders a sequence of products by ascending category name and, within each category, descending unit price.
 
-The ParseException Class
-------------------------
+### The ParseException Class
 
 The Dynamic Expression API reports parsing errors using the System.Linq.Dynamic.ParseException class. The Position property of the ParseException class gives the character index in the expression string at which the parsing error occurred.
 
-Expression Language
-===================
+### Expression Language
 
 The expression language implemented by the Dynamic Expression API provides a simple and convenient way of writing expressions that can be parsed into LINQ expression trees. The language supports most of the constructs of expression trees, but it is by no means a complete query or programming language. In particular, the expression language does not support statements or declarations.
 
 The expression language is designed to be familiar to C#, VB, and SQL users. For this reason, some operators are present in multiple forms, such as && and and.
 
-Identifiers
------------
+### Identifiers
 
 An Identifier consists of a letter or underscore followed by any number of letters, digits, or underscores. In order to reference an identifier with the same spelling as a keyword, the identifier must be prefixed with a single @ character. Some examples of identifiers:
 
@@ -205,8 +199,7 @@ customers.Where("Country = @0", country);
 
 Casing is not significant in identifiers or keywords.
 
-Literals
---------
+### Literals
 
 The expression language supports integer, real, string, and character literals.
 
@@ -226,15 +219,13 @@ A _character literal_ consists of a single character enclosed in single quotes. 
 
 'A'   '1'   ''''   '"'
 
-Constants
----------
+### Constants
 
 The predefined constants true and false denote the two values of the type Boolean.
 
 The predefined constant null denotes a null reference. The null constant is of type Object, but is also implicitly convertible to any reference type.
 
-Types
------
+### Types
 
 The expression language defines the following _primitive types_:
 
@@ -256,8 +247,7 @@ The non-nullable and nullable forms of the types Single, Double, and Decimal are
 
 The integral types and real types are collectively called the _numeric types_.
 
-Conversions
------------
+### Conversions
 
 The following conversions are implicitly performed by the expression language:
 
@@ -285,8 +275,7 @@ The expression language permits explicit conversions using the syntax _type_(_ex
 
 ·         Between any two types belonging to the set consisting of SByte, Byte, Int16, UInt16, Int32, UInt32, Int64, UInt64, Decimal, Single, Double, Char, any enum type, as well as the nullable forms of those types.
 
-Operators
----------
+### Operators
 
 The table below shows the operators supported by the expression language in order of precedence from highest to lowest. Operators in the same category have equal precedence. In the table, x, y, and z denote expressions, T denotes a [type](#_Types), and m denotes a member.
 
