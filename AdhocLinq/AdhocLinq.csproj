@@ -1,20 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<Version>0.0.1</Version><!--This will get replaced by build system-->
-
-		<TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
-		<LangVersion>10.0</LangVersion>
-		
-		<Authors>Michał Bryłka</Authors>
-		<PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
-		<Copyright>Copyright (c) Michał Bryłka. Icon by http://www.iconka.com </Copyright>
-		
+	<PropertyGroup>		
 		<PackageTags>dynamic LINQ parser on-the-fly</PackageTags>
-		<Description>Database applications frequently rely on “Dynamic SQL”—queries that are constructed at run-time through program logic. The LINQ infrastructure supports similar capabilities through dynamic construction of expression trees using the classes in the System.Linq.Expressions namespace. Expression trees are an appropriate abstraction for a variety of scenarios, but for others a string-based representation may be more convenient.</Description>
-
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<WarningsAsErrors />
+		<Description>Database applications frequently rely on “Dynamic SQL”—queries that are constructed at run-time through program logic. The LINQ infrastructure supports similar capabilities through dynamic construction of expression trees using the classes in the System.Linq.Expressions namespace. Expression trees are an appropriate abstraction for a variety of scenarios, but for others a string-based representation may be more convenient.</Description>		
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">

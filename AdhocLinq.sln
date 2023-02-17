@@ -9,10 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdhocLinq.Tests", "AdhocLin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{FB22588B-68F1-4B1B-B2ED-6C09CFE54B32}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		global.json = global.json
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdhocLinq.Tester", "AdhocLinq.Tester\AdhocLinq.Tester.csproj", "{708BDABC-E139-4A48-8C7E-F69716B55E6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +31,10 @@ Global
 		{CA45A7FD-592C-4EC9-8511-EA83030E8CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA45A7FD-592C-4EC9-8511-EA83030E8CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA45A7FD-592C-4EC9-8511-EA83030E8CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708BDABC-E139-4A48-8C7E-F69716B55E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{708BDABC-E139-4A48-8C7E-F69716B55E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{708BDABC-E139-4A48-8C7E-F69716B55E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{708BDABC-E139-4A48-8C7E-F69716B55E6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

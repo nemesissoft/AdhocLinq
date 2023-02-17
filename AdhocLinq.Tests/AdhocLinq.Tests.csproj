@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net6.0</TargetFrameworks>
-
-		<IsPackable>false</IsPackable>
-
-		<LangVersion>10.0</LangVersion>
-
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<PropertyGroup>		
+		<IsPackable>false</IsPackable>				
 	</PropertyGroup>
 
 	<ItemGroup>

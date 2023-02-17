@@ -1,0 +1,20 @@
+<Project>
+	<PropertyGroup>
+		<Version>0.0.1</Version><!--This will get replaced by build system-->
+		<TargetFrameworks>net6.0</TargetFrameworks>
+		<LangVersion>11.0</LangVersion>
+
+		<ImplicitUsings>enable</ImplicitUsings>
+		
+		<!--TODO <Nullable>enable</Nullable>-->
+
+		<Authors>Michał Bryłka</Authors>
+		<PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
+		<Copyright>Copyright (c) Michał Bryłka. Icon by http://www.iconka.com </Copyright>
+
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+
+	</PropertyGroup>
+
+</Project>
