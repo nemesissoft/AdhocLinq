@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>		
 		<PackageTags>dynamic LINQ parser on-the-fly</PackageTags>
-		<Description>Database applications frequently rely on “Dynamic SQL”—queries that are constructed at run-time through program logic. The LINQ infrastructure supports similar capabilities through dynamic construction of expression trees using the classes in the System.Linq.Expressions namespace. Expression trees are an appropriate abstraction for a variety of scenarios, but for others a string-based representation may be more convenient.</Description>		
+		<Description>Database applications frequently rely on “Dynamic SQL”—queries that are constructed at run-time through program logic. The LINQ infrastructure supports similar capabilities through dynamic construction of expression trees using the classes in the System.Linq.Expressions namespace. Expression trees are an appropriate abstraction for a variety of scenarios, but for others a string-based representation may be more convenient.</Description>
+		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">

@@ -1,5 +1,9 @@
-# Dynamic Expressions and Queries in LINQ
+[
+ ![NuGet version](https://img.shields.io/nuget/v/AdhocLinq.svg?style=flat-square)
+ ![Downloads](https://img.shields.io/nuget/dt/AdhocLinq.svg?style=flat-square)
+](https://www.nuget.org/packages/AdhocLinq/)
 
+# Dynamic Expressions and Queries in LINQ
 
 Database applications frequently rely on "Dynamic SQL" - queries that are constructed at run-time through program logic. The LINQ infrastructure supports similar capabilities through dynamic construction of expression trees using the classes in the System.Linq.Expressions namespace. Expression trees are an appropriate abstraction for a variety of scenarios, but for others a string-based representation may be more convenient. The [Dynamic Expression API](#_Dynamic_Expression_API) extends the core LINQ API with that capability. The API is located in the Dynamic.cs source file and provides
 

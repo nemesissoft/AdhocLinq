@@ -11,6 +11,7 @@
 		<Authors>Michał Bryłka</Authors>
 		<PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
 		<Copyright>Copyright (c) Michał Bryłka. Icon by http://www.iconka.com </Copyright>
+		<IsPackable>false</IsPackable>
 
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
