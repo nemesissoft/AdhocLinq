@@ -21,9 +21,9 @@ internal partial class ExpressionParser
         typeof(float), typeof(double),typeof(decimal),
         typeof(DateTime), typeof(DateTimeOffset), typeof(TimeSpan),
         typeof(Guid),
-        typeof(Math), typeof(Convert), typeof(Uri), typeof(CultureInfo),
-        //TODO: ADD EF later 
-        //typeof(System.Data.Objects.EntityFunctions) => typeof(System.Data.Entity.DbFunctions),
+        typeof(Math), typeof(Convert), typeof(Uri), typeof(CultureInfo),        
+        //typeof(System.Data.Objects.EntityFunctions) //for .NET Framework 
+        //typeof(System.Data.Entity.DbFunctions), //add to support EF functions 
     };
 
     const string KEYWORD_IT = "it";
