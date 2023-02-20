@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Threading;
 
 namespace AdhocLinq
 {
     [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "There is only ever one instance of this class, and it should never be destroyed except on AppDomain termination.")]
     internal class ClassFactory
     {
-        public static readonly ClassFactory Instance = new ClassFactory();
+        public static readonly ClassFactory Instance = new();
 
         readonly ModuleBuilder _module;
         readonly Dictionary<Signature, Type> _classes;
         int _classCount;
         readonly ReaderWriterLockSlim _rwLock;
 
-        [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", MessageId = "System.String.Format(System.String,System.Object)")]
         private ClassFactory()
         {
-            AssemblyName name = new AssemblyName($"{typeof(ClassFactory).Namespace}.DynamicClasses");
+            AssemblyName name = new($"{typeof(ClassFactory).Namespace}.DynamicClasses");
             AssemblyBuilder builder = AssemblyBuilder.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
 #if ENABLE_LINQ_PARTIAL_TRUST
             new ReflectionPermission(PermissionState.Unrestricted).Assert();
@@ -44,7 +39,7 @@ namespace AdhocLinq
 
         public Type GetDynamicClass(IEnumerable<DynamicProperty> properties)
         {
-            Signature signature = new Signature(properties);
+            Signature signature = new(properties);
 
             _rwLock.EnterReadLock();
 

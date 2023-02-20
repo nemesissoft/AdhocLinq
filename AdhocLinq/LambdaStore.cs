@@ -11,7 +11,7 @@ namespace AdhocLinq
 {
     class LambdaStore
     {
-        readonly Dictionary<Expression, string> _literals = new Dictionary<Expression, string>();
+        readonly Dictionary<Expression, string> _literals = new();
 
         //TODO:remove that and make sure that Conditional parsing conversion is done right 
         internal static readonly Expression NullLiteral = Expression.Constant(null);

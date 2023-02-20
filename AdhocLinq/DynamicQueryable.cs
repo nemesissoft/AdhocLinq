@@ -169,7 +169,7 @@ namespace AdhocLinq
                 throw new ArgumentException(NULL_OR_WHITESPACE_EXCEPTION_MESSAGE, nameof(ordering));
 
             ParameterExpression[] parameters = { Expression.Parameter(source.ElementType, "") };
-            ExpressionParser parser = new ExpressionParser(parameters, ordering, args, EmptyTypesResolver.Instance, NumberParserHandler.FromAssembly());
+            ExpressionParser parser = new(parameters, ordering, args, EmptyTypesResolver.Instance, NumberParserHandler.FromAssembly());
             IEnumerable<DynamicOrdering> orderings = parser.ParseOrdering();
             Expression queryExpr = source.Expression;
             string methodAsc = nameof(Enumerable.OrderBy);

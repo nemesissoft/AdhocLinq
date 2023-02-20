@@ -1,12 +1,8 @@
-﻿using System;
-using NUnit.Framework;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using AdhocLinq.Tests.Helpers;
+using NUnit.Framework;
 
 namespace AdhocLinq.Tests
 {
@@ -66,15 +62,15 @@ namespace AdhocLinq.Tests
         public void ParseLambda_VoidMethodCall_ReturnsActionDelegate()
         {
             var expression = new DynamicExpression(new DynamicTypesResolver(), NumberParserHandler.FromAssembly()).ParseLambda(
-                typeof(System.IO.MemoryStream),
+                typeof(MemoryStream),
                 typeof(void),
                 "it.Close()");
 
             Assert.AreEqual(typeof(void), expression.ReturnType);
-            Assert.AreEqual(typeof(Action<System.IO.MemoryStream>), expression.Type);
+            Assert.AreEqual(typeof(Action<MemoryStream>), expression.Type);
 
             var closeDelegate = expression.Compile();
-            using (var stream =new System.IO.MemoryStream())
+            using (var stream = new MemoryStream())
             {
                 stream.WriteByte(15);
                 closeDelegate.DynamicInvoke(stream);
@@ -297,15 +293,15 @@ namespace AdhocLinq.Tests
         [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
         public void GroupByMany_StringExpressions()
         {
-            var lst = new List<System.Tuple<int, int, int>>()
+            var lst = new List<Tuple<int, int, int>>()
             {
-                new System.Tuple<int, int, int>(1, 1, 1),
-                new System.Tuple<int, int, int>(1, 1, 2),
-                new System.Tuple<int, int, int>(1, 1, 3),
-                new System.Tuple<int, int, int>(2, 2, 4),
-                new System.Tuple<int, int, int>(2, 2, 5),
-                new System.Tuple<int, int, int>(2, 2, 6),
-                new System.Tuple<int, int, int>(2, 3, 7)
+                new Tuple<int, int, int>(1, 1, 1),
+                new Tuple<int, int, int>(1, 1, 2),
+                new Tuple<int, int, int>(1, 1, 3),
+                new Tuple<int, int, int>(2, 2, 4),
+                new Tuple<int, int, int>(2, 2, 5),
+                new Tuple<int, int, int>(2, 2, 6),
+                new Tuple<int, int, int>(2, 3, 7)
             };
 
             // ReSharper disable once PossibleUnintendedQueryableAsEnumerable

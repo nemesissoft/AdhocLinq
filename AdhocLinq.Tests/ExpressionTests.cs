@@ -159,9 +159,9 @@ public class ExpressionTests
         //Arrange
         var input = new List<Uri>
         {
-            new Uri("http://127.0.0.1"),
-            new Uri("http://192.168.1.1"),
-            new Uri("http://127.0.0.1")
+            new("http://127.0.0.1"),
+            new("http://192.168.1.1"),
+            new("http://127.0.0.1")
         };
 
         var qry = input.AsQueryable();

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-namespace AdhocLinq
+﻿namespace AdhocLinq
 {
     /// <summary>
     /// Indicates to Dynamic Linq to consider the Type as a valid dynamic linq type. Only <see cref="DeclarativelyMarkedTypesResolver"/> should use this attribute.
@@ -21,30 +16,11 @@ namespace AdhocLinq
 
         static IEnumerable<Type> FindTypesMarkedWithAttribute()
             => AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(GetTypes)
+                .SelectMany(a => a.GetTypesSafe())
                 .Where(type => type.IsDefined(typeof(TypeIsRecognizableByDynamicLinqAttribute), false));
 
-        private static IEnumerable<Type> GetTypes(Assembly ass)
-        {
-            try
-            {
-                return ass.GetTypes();
-            }
-            catch (ReflectionTypeLoadException e)
-            {
-                return e.Types;
-            }
-        }
-        /// <summary>
-        /// Get collection of recognizable types
-        /// </summary>
-        public IEnumerable<Type> CustomTypes => _customTypes ?? (_customTypes = new HashSet<Type>(FindTypesMarkedWithAttribute()));
+        public IEnumerable<Type> CustomTypes => _customTypes ??= new HashSet<Type>(FindTypesMarkedWithAttribute());
 
-        /// <summary>
-        /// Determines whether given types should be handled
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         public bool IsTypeRecognizable(Type type) => CustomTypes.Contains(type);
     }
 
@@ -62,18 +38,10 @@ namespace AdhocLinq
         /// ctor
         /// </summary>
         /// <param name="customTypes">Types that this resolver would recognize</param>
-        public DynamicTypesResolver(IEnumerable<Type> customTypes) => CustomTypes = customTypes ?? new Type[0];
+        public DynamicTypesResolver(IEnumerable<Type> customTypes) => CustomTypes = customTypes ?? Array.Empty<Type>();
 
-        /// <summary>
-        /// Get collection of recognizable types
-        /// </summary>
         public IEnumerable<Type> CustomTypes { get; }
 
-        /// <summary>
-        /// Determines whether given types should be handled
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         public bool IsTypeRecognizable(Type type) => true;
     }
 
@@ -82,21 +50,10 @@ namespace AdhocLinq
     /// </summary>
     public class EmptyTypesResolver : IRecognizableTypesResolver
     {
-        /// <summary>
-        /// Cached instance of <see cref="EmptyTypesResolver"/>
-        /// </summary>
         public static IRecognizableTypesResolver Instance { get; } = new EmptyTypesResolver();
 
-        /// <summary>
-        /// Get collection of recognizable types
-        /// </summary>
-        public IEnumerable<Type> CustomTypes { get; } = new Type[0];
+        public IEnumerable<Type> CustomTypes { get; } = Array.Empty<Type>();
 
-        /// <summary>
-        /// Determines whether given types should be handled
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
         public bool IsTypeRecognizable(Type type) => false;
     }
 
@@ -107,8 +64,7 @@ namespace AdhocLinq
     {
         /// <summary>
         /// Returns a list of custom types that Dynamic Linq will understand.
-        /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        /// </summary>        
         IEnumerable<Type> CustomTypes { get; }
 
         /// <summary>
